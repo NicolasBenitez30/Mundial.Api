@@ -33,7 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapPost("/Paises/", async (MundialDbContext db, PaisViewModel pais) =>
+app.MapPost("/paises/", async (MundialDbContext db, PaisViewModel pais) =>
 {
     var nuevoPais = new Pais()
     {
@@ -44,28 +44,36 @@ app.MapPost("/Paises/", async (MundialDbContext db, PaisViewModel pais) =>
     return Results.Created($"/paises/{nuevoPais.Id}", nuevoPais);
 });
 
-app.MapGet("/Paises/", async (MundialDbContext db) =>
+app.MapGet("/paises/", async (MundialDbContext db) =>
 {
     return Results.Ok(await db.Paises.Include(x => x.Participaciones).ToListAsync());
 });
 
-app.MapPost("/paises/{nombre}/", async (MundialDbContext db, string nombre, List<ParticipacionViewModel> participaciones) =>
+
+app.MapPost("/paises/{nombre}/participaciones", async (MundialDbContext db, string nombre, List<ParticipacionViewModel> participaciones) =>
 {
-    var pais = await db.Paises.FindAsync(nombre);
+    var pais = await db.Paises.FirstOrDefaultAsync(x => x.Nombre == nombre);
     var participacionesAdicionales = new List<Participacion>();
     foreach (var participacion in participaciones)
     {
         participacionesAdicionales.Add(new Participacion
         {
             Sede = participacion.Sede,
-            Año = participacion.Año
+            Año = participacion.Año,
+            Instancia = participacion.Instancia
         });
     }
+    pais.Participaciones.AddRange(participacionesAdicionales);
+    db.Entry(pais).State = EntityState.Modified;
+    await db.SaveChangesAsync();
+    return Results.NoContent();
 });
 
-// app.MapGet("/paises/{nombre}", async(MundialDbContext db, )
-// {
+app.MapGet("/paises/{nombre}/participaciones", (MundialDbContext db, string nombre) =>
+{
+    var pais = db.Paises.Where(x => x.Nombre == nombre, i => i.include(x => x.Participacion));
 
-// });
+    return Results.Ok(pais);
+});
 
 app.Run();

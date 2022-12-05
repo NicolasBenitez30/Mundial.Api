@@ -15,8 +15,7 @@ public class Participacion
     public string Sede { get; set; }
 
     [Required]
-    [StringLength(40)]
-    public string Año { get; set; }
+    public int Año { get; set; }
 
     [Required]
     [StringLength(40)]
