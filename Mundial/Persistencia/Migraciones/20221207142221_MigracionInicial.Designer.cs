@@ -11,8 +11,8 @@ using Mundial.Persistencia;
 namespace Mundial.Persistencia.Migraciones
 {
     [DbContext(typeof(MundialDbContext))]
-    [Migration("20221130142138_Migracion_Inicial")]
-    partial class Migracion_Inicial
+    [Migration("20221207142221_MigracionInicial")]
+    partial class MigracionInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,10 +43,8 @@ namespace Mundial.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Año")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)");
+                    b.Property<int>("Año")
+                        .HasColumnType("int");
 
                     b.Property<string>("Instancia")
                         .IsRequired()

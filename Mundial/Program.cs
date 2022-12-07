@@ -25,6 +25,15 @@ contexto.Database.EnsureCreated();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("appPolicy",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -32,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("appPolicy");
 
 app.MapPost("/paises/", async (MundialDbContext db, PaisViewModel pais) =>
 {
@@ -71,7 +82,7 @@ app.MapPost("/paises/{nombre}/participaciones", async (MundialDbContext db, stri
 
 app.MapGet("/paises/{nombre}/participaciones", (MundialDbContext db, string nombre) =>
 {
-    var pais = db.Paises.Where(x => x.Nombre == nombre, i => i.include(x => x.Participacion));
+    var pais = db.Paises.Where(x => x.Nombre == nombre).Include(x => x.Participaciones);
 
     return Results.Ok(pais);
 });
