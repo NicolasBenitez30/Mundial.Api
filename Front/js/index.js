@@ -49,6 +49,7 @@ let btnGuardarParticipacion = document.getElementById("btnGuardarParticipacion")
 btnGuardarParticipacion.addEventListener("click", (e) => {
     let participacionPais = document.getElementById("participacionPais")
     console.log(participacionPais.value);
+    var PaisP = participacionPais.value
     let participacionSede = document.getElementById("participacionSede")
     let participacionAño = document.getElementById("participacionAño")
     let participacionInstancia = document.getElementById("participacionInstancia")
@@ -66,8 +67,9 @@ btnGuardarParticipacion.addEventListener("click", (e) => {
         participacion.instancia !== '' && participacion.instancia !== null) {
         axios.post(baseUrl + `/paises/${participacionPais.value}/participaciones`, participaciones)
             .then(function (response) {
-                actualizarParticipaciones(participacionPais.value)
-                // actualizarGrafico()  
+                console.log(PaisP)
+                actualizarParticipaciones(PaisP)
+                actualizarGrafico()
             })
             .catch(function (error) {
                 alert()
@@ -83,7 +85,7 @@ btnGuardarParticipacion.addEventListener("click", (e) => {
 
 function actualizarParticipaciones(nombrePais) {
     console.log(nombrePais)
-    axios.get(baseUrl + `/paises/uruguay/participaciones`)
+    axios.get(baseUrl + `/paises/${nombrePais}/participaciones`)
         .then(function (response) {
             let participaciones = document.getElementById("participaciones")
             participacionesData = response.data
@@ -99,26 +101,30 @@ function actualizarParticipaciones(nombrePais) {
         })
 }
 
-const accesosDia = document.getElementById('accesosdia');
+const parInstancia = document.getElementById('parInstancia');
 
-var grafico = new Chart(accesosDia, {
+var grafico = new Chart(parInstancia, {
     type: 'bar',
     data: {
-        labels: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+        labels: [0, 0, 0, 0, 0, 0, 0],
         datasets: [{
-            label: '# de accesos',
+            label: '# de participaciones',
             data: [0, 0, 0, 0, 0, 0, 0],
             borderWidth: 1
         }]
     }
 });
+function graficoAños() {
+
+    grafico.data.labels[i].data = participaciones.map(x => x.año)
+}
 
 function actualizarGrafico() {
-    accesosDia.innerHTML = ""
-    axios.get(baseUrl + '/api/acceso/dia')
+    parInstancia.innerHTML = ""
+    axios.get(baseUrl + '/paises/participaciones')
         .then(function (response) {
-            let accesos = response.data;
-            grafico.data.datasets[0].data = accesos.map(x => x.accesos)
+            let participaciones = response.data;
+            grafico.data.datasets[0].data = participaciones.map(x => x.participaciones)
             grafico.update()
         })
         .catch(function (error) {

@@ -8,3 +8,9 @@ public class ParticipacionViewModel
 
     public string Instancia { get; set; }
 }
+
+public class ParticipacionDtoViewModel : ParticipacionViewModel
+{
+    public int Id { get; set; }
+    public int NroInstancia { get; set; }
+}
