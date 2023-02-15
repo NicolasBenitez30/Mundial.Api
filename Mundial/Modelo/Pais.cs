@@ -14,10 +14,7 @@ public class Pais
     [StringLength(40)]
     public string Nombre { get; set; }
 
-    public List<Participacion> Participaciones { get; set; }
-
-    public Pais()
-    {
-        Participaciones = new List<Participacion>();
-    }
+    [Required]
+    [StringLength(40)]
+    public string instancia { get; set; }
 }

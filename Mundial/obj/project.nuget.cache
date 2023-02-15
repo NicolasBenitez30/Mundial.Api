@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9LMoRWQgOPYb3lwhm2VMSRcwEGkwWiecgTxvMRpHWKSgD2YVM6qvGRO0q4RGIAAtZsn1EnsfE75QbYRfjlBebA==",
+  "dgSpecHash": "8NSoLTWlzRB00aix6f9t47nPqqFIgBZMzHS+HgyBWPRLZBUz8gsbn4VldJu3QWecH1IHcBX7N3Az4LgFxpQ7Vg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\Mundial\\Mundial.csproj",
+  "projectFilePath": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\mundial\\Mundial.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ET12Compu\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ET12Compu\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.11\\microsoft.entityframeworkcore.6.0.11.nupkg.sha512",

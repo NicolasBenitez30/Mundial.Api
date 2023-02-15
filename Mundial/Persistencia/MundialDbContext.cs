@@ -11,7 +11,5 @@ namespace Mundial.Persistencia
         }
 
         public DbSet<Pais> Paises { get; set; }
-
-        public DbSet<Participacion> Participaciones { get; set; }
     }
 }

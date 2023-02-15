@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\Mundial\\Mundial.csproj": {}
+    "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\mundial\\Mundial.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\Mundial\\Mundial.csproj": {
+    "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\mundial\\Mundial.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\Mundial\\Mundial.csproj",
+        "projectUniqueName": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\mundial\\Mundial.csproj",
         "projectName": "Mundial",
-        "projectPath": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\Mundial\\Mundial.csproj",
+        "projectPath": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\mundial\\Mundial.csproj",
         "packagesPath": "C:\\Users\\ET12Compu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\Mundial\\obj\\",
+        "outputPath": "C:\\Users\\ET12Compu\\Desktop\\Mundial.Api\\mundial\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
