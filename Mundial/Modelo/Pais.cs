@@ -16,5 +16,5 @@ public class Pais
 
     [Required]
     [StringLength(40)]
-    public string instancia { get; set; }
+    public string Instancia { get; set; }
 }

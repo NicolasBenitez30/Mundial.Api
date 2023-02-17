@@ -48,29 +48,47 @@ btnGuardarPais.addEventListener("click", (e) => {
 })
 
 
-const parInstancia = document.getElementById('parInstancia');
+const InstanciasPaises = document.getElementById('InstanciasPaises');
 
-var grafico = new Chart(parInstancia, {
-    type: 'bar',
-    data: {
-        data: ["NO PARTICIPO", "FASE DE GRUPOS", "OCTAVOS DE FINAL", "CUARTOS DE FINAL", "SEMIFINAL", "TERCER PUESTO", "SUBCAMPEÓN", "CAMPEÓN"],
-        labels: [0, 0, 0, 0, 0, 0, 0],
-        datasets: [{
-            label: '# de Instancias',
-            borderWidth: 1
-        }]
-    }
-});
-function grafico() {
-    grafico.data.labels[i].data = participaciones.map(x => x.año)
+// let NoParticipo = 1
+// let FaseDeGrupos = 2
+// let OctavosDeFinal = 3
+
+let data = {
+    labels: [],
+    datasets: [
+        {
+            label: 'Instancia',
+            data: ["No Participo", "Fase De Grupos", "OctavosDeFinal", "Cuartos De Final", "Semifinal", "Tercer Puesto", "Subcampeon", "Campeon"]
+        }
+    ]
 }
 
+var grafico = new Chart(InstanciasPaises, {
+    type: 'bar',
+    data: data,
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Grafico de Instancias'
+            }
+        }
+    },
+})
+
 function actualizarGrafico() {
-    parInstancia.innerHTML = ""
-    axios.get(baseUrl + '/grafico')
+    InstanciasPaises.innerHTML = ""
+    axios.get(baseUrl + '/paises')
         .then(function (response) {
-            let participaciones = response.data;
-            grafico.data.datasets[0].data = participaciones.map(x => x.participaciones)
+            let Instancias = response.data;
+            console.log(Instancias)
+            grafico.data.labels = Instancias.map(x => x.nombre)
+            grafico.data.datasets[0].data = Instancias.map(x => x.instancia)
             grafico.update()
         })
         .catch(function (error) {

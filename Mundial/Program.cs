@@ -58,7 +58,8 @@ app.MapPost("/paises/", async (MundialDbContext db, PaisViewModel pais) =>
 
 app.MapGet("/paises/", async (MundialDbContext db) =>
 {
-    return Results.Ok(await db.Paises.Include(x => x.Participaciones).ToListAsync());
+    var Paises = await db.Paises.ToListAsync();
+    return Results.Ok(Paises);
 });
 
 // int CalcularNroInstancia(Pais p)
@@ -72,7 +73,7 @@ app.MapGet("/paises/", async (MundialDbContext db) =>
 //         case "SEMIFINAL": { return 4; }
 //         case "TERCER PUESTO": { return 5; }
 //         case "SUBCAMPEÓN": { return 6; }
-//         case "CAMPEÓN": { return 7; }
+//         case "CAMPEÓN": { return 1; }
 //     }
 //     return 0;
 // }

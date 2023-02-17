@@ -34,8 +34,3 @@ C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\refint\Mundial.d
 C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\Mundial.pdb
 C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\Mundial.genruntimeconfig.cache
 C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\ref\Mundial.dll
-C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\staticwebassets\msbuild.Mundial.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\staticwebassets\msbuild.build.Mundial.props
-C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Mundial.props
-C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Mundial.props
-C:\Users\ET12Compu\Desktop\Mundial.Api\Mundial\obj\Debug\net6.0\staticwebassets.pack.json
