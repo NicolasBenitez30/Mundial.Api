@@ -24,10 +24,12 @@ namespace Mundial.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Instancia")
+                    b.Property<string>("Color")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)");
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Mundial")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

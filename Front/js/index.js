@@ -12,9 +12,10 @@ function actualizarPaises() {
             paisesData = response.data
             var paisesHtml = ''
             for (let i = 0; i < paisesData.length; i++) {
-                paisesHtml += `Pais: ${paisesData[i].nombre} - ${paisesData[i].instancia} <br/> `
+                paisesHtml += `Pais: ${paisesData[i].nombre} - Copa del Mundo: ${paisesData[i].mundial} <br/> `
             }
             paises.innerHTML = paisesHtml
+            actualizarGrafico()
         })
         .catch(function (error) {
             console.log(error);
@@ -25,13 +26,13 @@ let btnGuardarPais = document.getElementById("btnGuardarPais")
 
 btnGuardarPais.addEventListener("click", (e) => {
     let nombrePais = document.getElementById("nombrePais")
-    let instanciaPais = document.getElementById("instanciaPais")
+    let mundialPais = document.getElementById("mundialPais")
     let pais = {
         nombre: nombrePais.value,
-        instancia: instanciaPais.value
+        mundial: mundialPais.value
     }
     if (pais.nombre !== '' && pais.nombre !== null &&
-        pais.instancia !== '' && pais.instancia !== null) {
+        pais.mundial !== '' && pais.mundial !== null) {
         axios.post(baseUrl + "/paises", pais)
             .then(function (response) {
                 console.log(response)
@@ -41,30 +42,27 @@ btnGuardarPais.addEventListener("click", (e) => {
                 alert(error)
             })
         nombrePais.value = ''
-        instanciaPais.value = ''
+        mundialPais.value = ''
     } else {
-        alert('Verificar campo pais o instancia')
+        alert('Verificar campo pais o mundial/es')
     }
 })
 
 
-const InstanciasPaises = document.getElementById('InstanciasPaises');
-
-// let NoParticipo = 1
-// let FaseDeGrupos = 2
-// let OctavosDeFinal = 3
+const MundialesPaises = document.getElementById('MundialesPaises');
 
 let data = {
     labels: [],
     datasets: [
         {
-            label: 'Instancia',
-            data: ["No Participo", "Fase De Grupos", "OctavosDeFinal", "Cuartos De Final", "Semifinal", "Tercer Puesto", "Subcampeon", "Campeon"]
+            label: 'Mundial/es',
+            data: []
         }
-    ]
-}
+    ],
+    backgroundColor: []
+};
 
-var grafico = new Chart(InstanciasPaises, {
+var grafico = new Chart(MundialesPaises, {
     type: 'bar',
     data: data,
     options: {
@@ -75,20 +73,21 @@ var grafico = new Chart(InstanciasPaises, {
             },
             title: {
                 display: true,
-                text: 'Grafico de Instancias'
+                text: 'Tabla Copas del Mundo'
             }
         }
     },
 })
 
 function actualizarGrafico() {
-    InstanciasPaises.innerHTML = ""
+    MundialesPaises.innerHTML = ""
     axios.get(baseUrl + '/paises')
         .then(function (response) {
-            let Instancias = response.data;
-            console.log(Instancias)
-            grafico.data.labels = Instancias.map(x => x.nombre)
-            grafico.data.datasets[0].data = Instancias.map(x => x.instancia)
+            let Copas = response.data;
+            console.log(Copas)
+            grafico.data.labels = Copas.map(x => x.nombre)
+            grafico.data.datasets[0].data = Copas.map(x => x.mundial)
+            grafico.data.datasets[0].backgroundColor = Copas.map(x => x.color)
             grafico.update()
         })
         .catch(function (error) {

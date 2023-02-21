@@ -49,7 +49,8 @@ app.MapPost("/paises/", async (MundialDbContext db, PaisViewModel pais) =>
     var nuevoPais = new Pais()
     {
         Nombre = pais.Nombre,
-        Instancia = pais.Instancia
+        Mundial = pais.Mundial,
+        Color = ""
     };
     await db.Paises.AddAsync(nuevoPais);
     await db.SaveChangesAsync();
@@ -59,6 +60,11 @@ app.MapPost("/paises/", async (MundialDbContext db, PaisViewModel pais) =>
 app.MapGet("/paises/", async (MundialDbContext db) =>
 {
     var Paises = await db.Paises.ToListAsync();
+    var random = new Random();
+    foreach (var pais in Paises)
+    {
+        pais.Color = String.Format("#{0:X6}", random.Next(0x1000000));
+    }
     return Results.Ok(Paises);
 });
 
@@ -72,7 +78,7 @@ app.MapGet("/paises/", async (MundialDbContext db) =>
 //         case "CUARTOS DE FINAL": { return 3; }
 //         case "SEMIFINAL": { return 4; }
 //         case "TERCER PUESTO": { return 5; }
-//         case "SUBCAMPEÓN": { return 6; }
+//         case "SUBCAMPEÓN": { return ; }
 //         case "CAMPEÓN": { return 1; }
 //     }
 //     return 0;

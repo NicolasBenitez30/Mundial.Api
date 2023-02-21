@@ -15,6 +15,9 @@ public class Pais
     public string Nombre { get; set; }
 
     [Required]
-    [StringLength(40)]
-    public string Instancia { get; set; }
+    public int Mundial { get; set; }
+
+    public string Color { get; set; }
+
+    public Pais() {}
 }
